@@ -43,36 +43,41 @@ for a in animals:
 
 class Rectangle:
     def __init__(self, width, height):
+        self._width = None  
+        self._height = None
         self.width = width  
         self.height = height
 
-    def get_width(self):
-        return self.width
-
-    def set_width(self, new_width):
-        if new_width > 0:
-            self.width = new_width
+    @property
+    def width(self):
+        return self._width
+    
+    @width.setter
+    def width(self, value):
+        if value > 0:
+            self._width = value
         else:
-            print("ValueError")
-        
-    def get_height(self):
-        return self.height
+            print("Ширина не может быть отрицательной или равной нулю")
 
-    def set_height(self, new_height):
-        if new_height > 0:
-            self.height = new_height
+    @property  
+    def height(self):
+        return self._height
+
+    @height.setter
+    def height(self, value):
+        if value > 0:
+            self._height = value
         else:
-            print("ValueError")
+            print("Высота не может быть отрицательной или равной нулю")
 
     @property
     def area(self):
         return self.width * self.height
-        
 
 newArea = Rectangle(3, 4)
 print(newArea.area)
-newArea.width = -5
-newArea.height = -6
+newArea = Rectangle(-3, 4)
+newArea = Rectangle(3, -4)
 
 
 #Задача 4: Платёжные системы
@@ -103,7 +108,6 @@ make_payment(paypal, 500.50)
 
 
 #Задача 5: Транспорт
-
 from abc import ABC, abstractmethod
 class Transport(ABC):
      
@@ -115,9 +119,6 @@ class Transport(ABC):
      @abstractmethod
      def stop(self):
          pass
-     
-
-
 class Car(Transport):
     def __init__(self, max_speed):
         self._max_speed = None
@@ -130,9 +131,11 @@ class Car(Transport):
     @max_speed.setter
     def max_speed(self, value):
         if(value < 0):
-            print("Скорость не может быть отрицательной")
+            print(f"Скорость не может быть отрицательной, ваша скорость {value}")
         elif(value > 300):
-            print("Скорость не может быть выше 300")
+            print(f"Скорость не может быть выше 300, ваша скорость {value}")
+        elif(value == 0):
+            print("Скорость равно 0, машина стоит")
         else:
             self._max_speed = value
     
@@ -144,5 +147,6 @@ class Car(Transport):
 
 c = Car(250)  
 print(c.max_speed)
-c = Car(350)  
-print(c.max_speed)
+c = Car(350)
+c = Car(-20)
+c = Car(0)
