@@ -43,8 +43,6 @@ for a in animals:
 
 class Rectangle:
     def __init__(self, width, height):
-        self._width = None  
-        self._height = None
         self.width = width  
         self.height = height
 
@@ -121,7 +119,6 @@ class Transport(ABC):
          pass
 class Car(Transport):
     def __init__(self, max_speed):
-        self._max_speed = None
         self.max_speed = max_speed
     
     @property
