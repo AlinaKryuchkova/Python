@@ -15,7 +15,7 @@ c = Counter()
 c.increment()
 c.increment()
 c.increment()
-print(c.get_counter())  # 3
+print(c.get_counter())
 
 
 #Задача 2: Животные
@@ -48,23 +48,23 @@ class Rectangle:
 
     @property
     def width(self):
-        return self._width
+        return self.__width
     
     @width.setter
     def width(self, value):
         if value > 0:
-            self._width = value
+            self.__width = value
         else:
             print("Ширина не может быть отрицательной или равной нулю")
 
     @property  
     def height(self):
-        return self._height
+        return self.__height
 
     @height.setter
     def height(self, value):
         if value > 0:
-            self._height = value
+            self.__height = value
         else:
             print("Высота не может быть отрицательной или равной нулю")
 
@@ -121,11 +121,11 @@ class Car(Transport):
     def __init__(self, max_speed):
         self.max_speed = max_speed
     
-    @property
+    @property # декоратор, позволяет обращаться к функции как к переменной
     def max_speed(self):
-        return self._max_speed
+        return self.__max_speed
     
-    @max_speed.setter
+    @max_speed.setter # декоратор сеттера, в названии нужно передовать название геттера + метод setter
     def max_speed(self, value):
         if(value < 0):
             print(f"Скорость не может быть отрицательной, ваша скорость {value}")
@@ -134,7 +134,7 @@ class Car(Transport):
         elif(value == 0):
             print("Скорость равно 0, машина стоит")
         else:
-            self._max_speed = value
+            self.__max_speed = value
     
     def start(self):
         print("Машина едет")
