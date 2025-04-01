@@ -1,4 +1,5 @@
 # -*- coding: cp1251 -*-
+
 # Задача 1: Класс ShoppingCart
 
 class ShoppingCart():
@@ -93,32 +94,113 @@ class Client():
     def __init__(self, name: str, balance: int):
         self.name = name
         self.balance = balance
-        
 
-
-class Bank(Client):
+class Bank():
     def __init__(self):
-        self.client_bank = {}
+        self.clients = {}
     
-    def add_client(self, client: Client):
-        self.client_bank = client
+    def add_client(self, name: str, balance: int):
+        self.clients[name] = Client(name, balance)
     
-    # def transfer(self):
+    def transfer(self, from_name: str, to_name: str, amount: int):
+            from_client = self.clients[from_name]
+            to_client = self.clients[to_name]
+            from_client.balance -= amount
+            to_client.balance += amount
         
-    # def get_balance(self):
+    def get_balance(self, name: str):
+        return self.clients[name].balance
+        
 
-
-d = Bank()
-print(d.add_client(Client('alina', 500)))
-        
-    
-        
-    
+b = Bank()
+b.add_client("Ivan", 1000)
+b.add_client("Anna", 500)
+b.transfer("Ivan", "Anna", 300)
+print(b.get_balance("Anna"))
+print(b.get_balance("Ivan"))    
         
 
 #Задача 5: Менеджер плагинов
 
+from abc import ABC, abstractmethod
+
+class Plugin(ABC):
+    
+    @abstractmethod
+    def execute(self):
+        pass
+    
+class PrintPlugin(Plugin):
+    def __init__(self, message: str):
+        self.message = message
+    
+    def execute(self):
+        return self.message
+    
+class SumPlugin(Plugin):
+    def __init__(self, numbers: int):
+        self.numbers = numbers
+    
+    def execute(self):
+        return sum(self.numbers)
+               
+
+class ReversePlugin(Plugin):
+    def __init__(self, text: str):
+        self.text = text
+    
+    def execute(self):
+        return self.text[::-1]
+    
+class PluginManager():
+    def __init__(self):
+        self.plugins = []
+    
+    def register(self, plugin: Plugin):
+        self.plugins.append(plugin)
+        print(plugin.execute())
+    
+    def runAll(self,):
+        for plugin in self.plugins:
+            print(plugin.execute())
+    
+
+pm = PluginManager()
+pm.register(ReversePlugin('pirog'))
+pm.register(SumPlugin([3, 3, 3]))
+pm.register(PrintPlugin('attack'))
+pm.runAll()
+
 #Задача 6: Расписание и преподаватели
 
-#Задача 7: Конструктор UI-интерфейсов
+class Teacher():
+    def __init__(self, teacher: str, subject: list):
+        self.teacher = teacher
+        self.subject = subject
+        
+class Schedule():
+    def __init__(self):
+        self.lesson = []
+    
+    def add_lesson(self, day: str, subject: str, teacher: Teacher):
+        self.lesson.append((day, subject, teacher))
+    
+    def get_day_schedule(self, day: str):
+        one_day = []
+        for lesson in self.lesson:  
+            if lesson[0] == day:
+              one_day.append(f"Предмет: {lesson[1]}, Преподаватель: {lesson[2].teacher}")
+        return ", ".join(one_day)
+            
+   
+t = Teacher("Ivanov", ["History"])
+t1 = Teacher("Petrov", ["Math"])
+t2 = Teacher("Minin", ["English"])
+s = Schedule()
+s.add_lesson("Monday", "History", t)
+s.add_lesson("Monday", "Math", t1)
+s.add_lesson("Friday", "English", t2)
+print(s.get_day_schedule("Monday"))
+
+
 
