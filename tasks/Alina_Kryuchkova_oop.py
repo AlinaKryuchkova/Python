@@ -1,5 +1,5 @@
-# -*- coding: cp1251 -*-
-# Задача 1: Счётчик
+# -*- coding: utf-8 -*-
+# Р—Р°РґР°С‡Р° 1: РЎС‡С‘С‚С‡РёРє
 class Counter:
     def __init__(self):
         self.__count = 0
@@ -18,28 +18,28 @@ c.increment()
 print(c.get_counter())
 
 
-#Задача 2: Животные
+#Р—Р°РґР°С‡Р° 2: Р–РёРІРѕС‚РЅС‹Рµ
 
 class Animal:
 
     def speak(self):
-        print("Животное издаёт звук")
+        print("Р–РёРІРѕС‚РЅРѕРµ РёР·РґР°С‘С‚ Р·РІСѓРє")
 
 class Dog(Animal):
 
     def speak(self):
-        print("Гав-гав!")
+        print("Р“Р°РІ-РіР°РІ!")
 
 class Cat(Animal):
 
     def speak(self):
-        print("Мяу-мяу!")
+        print("РњСЏСѓ-РјСЏСѓ!")
 
 animals = [Dog(), Cat()]
 for a in animals:
     a.speak() 
 
-#Задача 3: Прямоугольник
+#Р—Р°РґР°С‡Р° 3: РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє
 
 class Rectangle:
     def __init__(self, width, height):
@@ -55,7 +55,7 @@ class Rectangle:
         if value > 0:
             self.__width = value
         else:
-            print("Ширина не может быть отрицательной или равной нулю")
+            print("РЁРёСЂРёРЅР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕР№ РёР»Рё СЂР°РІРЅРѕР№ РЅСѓР»СЋ")
 
     @property  
     def height(self):
@@ -66,7 +66,7 @@ class Rectangle:
         if value > 0:
             self.__height = value
         else:
-            print("Высота не может быть отрицательной или равной нулю")
+            print("Р’С‹СЃРѕС‚Р° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕР№ РёР»Рё СЂР°РІРЅРѕР№ РЅСѓР»СЋ")
 
     @property
     def area(self):
@@ -78,7 +78,7 @@ newArea = Rectangle(-3, 4)
 newArea = Rectangle(3, -4)
 
 
-#Задача 4: Платёжные системы
+#Р—Р°РґР°С‡Р° 4: РџР»Р°С‚С‘Р¶РЅС‹Рµ СЃРёСЃС‚РµРјС‹
 
 class PaymentMethod:
 
@@ -88,12 +88,12 @@ class PaymentMethod:
 class CreditCardPayment(PaymentMethod):
 
     def pay(self, amount):
-        print(f"Оплата по кредитной карте: {amount} руб.")
+        print(f"РћРїР»Р°С‚Р° РїРѕ РєСЂРµРґРёС‚РЅРѕР№ РєР°СЂС‚Рµ: {amount} СЂСѓР±.")
 
 class PayPalPayment(PaymentMethod):
 
     def pay(self, amount):
-        print(f"Оплата через PayPal: {amount} руб.")
+        print(f"РћРїР»Р°С‚Р° С‡РµСЂРµР· PayPal: {amount} СЂСѓР±.")
 
 
 def make_payment(method: PaymentMethod, amount: float):
@@ -105,7 +105,7 @@ make_payment(credit, 1000)
 make_payment(paypal, 500.50)
 
 
-#Задача 5: Транспорт
+#Р—Р°РґР°С‡Р° 5: РўСЂР°РЅСЃРїРѕСЂС‚
 from abc import ABC, abstractmethod
 class Transport(ABC):
      
@@ -121,26 +121,26 @@ class Car(Transport):
     def __init__(self, max_speed):
         self.max_speed = max_speed
     
-    @property # декоратор, позволяет обращаться к функции как к переменной
+    @property # РґРµРєРѕСЂР°С‚РѕСЂ, РїРѕР·РІРѕР»СЏРµС‚ РѕР±СЂР°С‰Р°С‚СЊСЃСЏ Рє С„СѓРЅРєС†РёРё РєР°Рє Рє РїРµСЂРµРјРµРЅРЅРѕР№
     def max_speed(self):
         return self.__max_speed
     
-    @max_speed.setter # декоратор сеттера, в названии нужно передовать название геттера + метод setter
+    @max_speed.setter # РґРµРєРѕСЂР°С‚РѕСЂ СЃРµС‚С‚РµСЂР°, РІ РЅР°Р·РІР°РЅРёРё РЅСѓР¶РЅРѕ РїРµСЂРµРґРѕРІР°С‚СЊ РЅР°Р·РІР°РЅРёРµ РіРµС‚С‚РµСЂР° + РјРµС‚РѕРґ setter
     def max_speed(self, value):
         if(value < 0):
-            print(f"Скорость не может быть отрицательной, ваша скорость {value}")
+            print(f"РЎРєРѕСЂРѕСЃС‚СЊ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕР№, РІР°С€Р° СЃРєРѕСЂРѕСЃС‚СЊ {value}")
         elif(value > 300):
-            print(f"Скорость не может быть выше 300, ваша скорость {value}")
+            print(f"РЎРєРѕСЂРѕСЃС‚СЊ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РІС‹С€Рµ 300, РІР°С€Р° СЃРєРѕСЂРѕСЃС‚СЊ {value}")
         elif(value == 0):
-            print("Скорость равно 0, машина стоит")
+            print("РЎРєРѕСЂРѕСЃС‚СЊ СЂР°РІРЅРѕ 0, РјР°С€РёРЅР° СЃС‚РѕРёС‚")
         else:
             self.__max_speed = value
     
     def start(self):
-        print("Машина едет")
+        print("РњР°С€РёРЅР° РµРґРµС‚")
 
     def stop(self):
-        print("Машина остановлена")
+        print("РњР°С€РёРЅР° РѕСЃС‚Р°РЅРѕРІР»РµРЅР°")
 
 c = Car(250)  
 print(c.max_speed)
