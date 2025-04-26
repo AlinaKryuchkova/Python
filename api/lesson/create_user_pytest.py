@@ -1,5 +1,6 @@
 import requests, pytest
 
+@pytest.mark.test
 class TestCreateUser:
     def test_create_user(
             self,
